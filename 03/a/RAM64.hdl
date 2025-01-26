@@ -13,5 +13,22 @@ CHIP RAM64 {
     OUT out[16];
 
     PARTS:
-    //// Replace this comment with your code.
+    DMux8Way(in=load, sel=address[0..2], a=admux, b=bdmux, c=cdmux, d=ddmux, e=edmux, f=fdmux, g=gdmux, h=hdmux); 
+    Mux16(a=in, b=out0, sel=admux);
+    Mux16(a=in, b=out0, sel=bdmux);
+    Mux16(a=in, b=out0, sel=cdmux);
+    Mux16(a=in, b=out0, sel=ddmux);
+    Mux16(a=in, b=out0, sel=edmux);
+    Mux16(a=in, b=out0, sel=fdmux);
+    Mux16(a=in, b=out0, sel=gdmux);
+    Mux16(a=in, b=out0, sel=hdmux);
+    RAM8(in=in, load=admux, address=address[3..5], out=aram);
+    RAM8(in=in, load=bdmux, address=address[3..5], out=bram);
+    RAM8(in=in, load=cdmux, address=address[3..5], out=cram);
+    RAM8(in=in, load=ddmux, address=address[3..5], out=dram);
+    RAM8(in=in, load=edmux, address=address[3..5], out=eram);
+    RAM8(in=in, load=fdmux, address=address[3..5], out=fram);
+    RAM8(in=in, load=gdmux, address=address[3..5], out=gram);
+    RAM8(in=in, load=hdmux, address=address[3..5], out=hram);
+    Mux8Way16(a=aram, b=bram, c=cram, d=dram, e=eram, f=fram, g=gram, h=hram, sel=address[0..2], out=out, out=out0);
 }
