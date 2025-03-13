@@ -8,3 +8,26 @@
 // The algorithm is based on repetitive addition.
 
 //// Replace this comment with your code.
+
+  @cnt //乗算が実装されていないので加算をループするためのカウンター
+  M=0
+  @2
+  M=0
+(LOOP)
+  @cnt
+  D=M
+  @1
+  D=D-M
+  @END
+  D;JEQ //cntと定数が一致すればbreak
+  @0
+  D=M
+  @2
+  M=D+M //memory[2]に加算
+  @cnt
+  M=M+1
+  @LOOP
+  0;JMP
+(END)
+  @END
+  0;JMP
